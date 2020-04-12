@@ -1,11 +1,17 @@
 defmodule ImaasWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :imaas
 
-  plug Plug.Static,
-    at: "/uploads",
-    from: {:imaas, "uploads"},
-    # from: Path.expand("./uploads"),
-    gzip: false
+  if Application.get_env(:imaas, :environment) == :dev do
+    plug Plug.Static,
+      at: "/uploads",
+      from: Path.expand("./uploads"),
+      gzip: false
+  else
+    plug Plug.Static,
+      at: "/uploads",
+      from: {:imaas, "uploads"},
+      gzip: false
+  end
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]

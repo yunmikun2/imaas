@@ -21,4 +21,5 @@ config :phoenix, :plug_init_mode, :runtime
 
 config :imaas,
   web_url: "http://localhost:4000",
-  application_host: "http://localhost:4001"
+  application_host: "http://localhost:4001",
+  converter_url: "http://localhost:4002"

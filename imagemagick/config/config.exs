@@ -1,3 +1,3 @@
 import Config
 
-config :imagemagick, port: 4000
+config :imagemagick, port: 4002

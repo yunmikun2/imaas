@@ -1,6 +1,8 @@
 # General application configuration
 import Config
 
+config :imaas, environment: Mix.env()
+
 config :imaas,
   ecto_repos: [Imaas.Repo]
 

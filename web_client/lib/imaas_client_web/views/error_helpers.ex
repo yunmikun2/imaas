@@ -10,7 +10,7 @@ defmodule ImaasClientWeb.ErrorHelpers do
   """
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn {error, _} ->
-      content_tag :span, error, class: "help-block"
+      content_tag(:span, error, class: "help-block")
     end)
   end
 end

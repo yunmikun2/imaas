@@ -8,6 +8,7 @@ defmodule ImaasClient.Api.Form do
   @primary_key false
   embedded_schema do
     field :image, :any, virtual: true
+    field :image_thumb, :any, virtual: true
     field :created_at, :utc_datetime
   end
 
@@ -36,7 +37,7 @@ defmodule ImaasClient.Api.Form do
   def parse_list(attrs) when is_list(attrs) do
     traverse(attrs, fn attrs ->
       %__MODULE__{}
-      |> Changeset.cast(attrs, [:image, :created_at])
+      |> Changeset.cast(attrs, [:image, :image_thumb, :created_at])
       |> Changeset.apply_action(:insert)
     end)
   end

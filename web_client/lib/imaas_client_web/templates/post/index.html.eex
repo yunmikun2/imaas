@@ -3,9 +3,11 @@
     <a href="<%= Routes.post_path(@conn, :new) %>">New post</a>
   </section>
   <article class="row">
-    <%= for %{image: image, created_at: time} <- @posts do %>
+    <%= for %{image: image, image_thumb: thumb, created_at: time} <- @posts do %>
       <div class="column">
-        <img src="<%= image %>">
+        <a href="<%= image %>">
+          <img src="<%= thumb %>">
+        </a>
         <span>Posted at: <%= time %></span>
       </div>
     <% end %>

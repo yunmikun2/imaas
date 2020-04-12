@@ -13,18 +13,20 @@ defmodule ImaasWeb.PostView do
 
   def render("post.json", %{post: post}) do
     %{
-      image: url(post),
+      image: url(post, :original),
+      image_thumb: url(post, :thumb),
       created_at: DateTime.from_naive!(post.inserted_at, "Etc/UTC")
     }
   end
 
-  defp url(%{image: image} = post) do
-    "#{Application.get_env(:imaas, :application_host)}#{image_path({image, post})}"
+  defp url(%{image: image} = post, size) do
+    "#{Application.get_env(:imaas, :application_host)}" <>
+      image_path({image, post}, size)
   end
 
-  defp image_path(image_and_post) do
+  defp image_path(image_and_post, size) do
     image_and_post
-    |> Image.url()
+    |> Image.url(size)
     |> String.replace(Application.app_dir(:imaas), "")
   end
 end

@@ -5,8 +5,9 @@ defmodule Imagemagick.Converter do
 
   def convert(%Upload{path: path, content_type: mime}, options, accept) do
     converted_path = converted_path(path, mime, accept)
+    args = [path] ++ options ++ [converted_path]
 
-    case System.cmd("convert", [path] ++ options ++ [converted_path]) do
+    case System.cmd("convert", args, stderr_to_stdout: true) do
       {_, 0} ->
         {:ok, final_mime(mime, accept), converted_path}
 

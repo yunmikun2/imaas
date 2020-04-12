@@ -20,7 +20,8 @@ defmodule Imagemagick.ConverterPlug do
       {:error, exit_code, stdout} ->
         conn
         |> put_resp_content_type("text/plain")
-        |> send_resp(400, "Exit code: #{exit_code}\n\n#{stdout}")
+        |> put_resp_header("x-exit-code", "#{exit_code}")
+        |> send_resp(400, stdout)
         |> halt
     end
   end

@@ -55,6 +55,7 @@ services:
     depends_on:
       - db
       - imagemagick
+      - gocaas
   db:
     image: mdillon/postgis:9.6
     container_name: db
@@ -75,3 +76,7 @@ services:
     restart: unless-stopped
     networks:
       - internal
+  gocaas:
+    build:
+      context: ./gocaas
+    image: gocaas:latest

@@ -11,6 +11,6 @@ defmodule Imaas.Images.Image do
   end
 
   def transform(:thumb, _) do
-    {:convert, "-strip -thumbnail 100x100^ -gravity center -extent 100x100"}
+    {:gocaas, "-strip -thumbnail 100x100^ -gravity center -extent 100x100"}
   end
 end

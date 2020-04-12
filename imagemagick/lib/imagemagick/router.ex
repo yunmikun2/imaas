@@ -3,6 +3,8 @@ defmodule Imagemagick.Router do
 
   use Plug.Builder
 
+  plug Plug.Logger
+
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart],
     pass: ["application/x-www-form-urlencoded"]

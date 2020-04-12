@@ -24,15 +24,15 @@ RUN mix deps.get --only $MIX_ENV && \
     mix compile && \
     mix release
 
-FROM pentacent/alpine-erlang-base:latest
+FROM bitwalker/alpine-erlang:latest
 
 ARG MIX_ENV
 ENV MIX_ENV $MIX_ENV
 
 ENV PORT 4000
 
-COPY --from=bitwalker/alpine-erlang:latest /usr/lib/libcrypto.so.1.1 /usr/lib/libcrypto.so.1.1
 COPY --from=otprelease /app/_build/${MIX_ENV}/rel/imaas ./
+COPY --from=gocaas:latest /bin/gocaas /bin
 
 EXPOSE 4000
 

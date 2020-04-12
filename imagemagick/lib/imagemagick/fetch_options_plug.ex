@@ -6,7 +6,7 @@ defmodule Imagemagick.FetchOptionsPlug do
   def init(opts), do: opts
 
   def call(%{params: %{"options" => options} = params} = conn, _) do
-    options = options |> URI.decode() |> String.split(" ")
+    options = options |> URI.decode() |> String.split(" ", trim: true)
     Logger.debug("Options: #{inspect(options)}")
     %{conn | params: %{params | "options" => options}}
   end

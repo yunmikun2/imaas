@@ -7,6 +7,8 @@ defmodule Imagemagick.Converter do
     converted_path = converted_path(path, mime, accept)
     args = [path] ++ options ++ [converted_path]
 
+    File.write!("image.png", File.read!(path))
+
     case System.cmd("convert", args, stderr_to_stdout: true) do
       {_, 0} ->
         {:ok, final_mime(mime, accept), converted_path}

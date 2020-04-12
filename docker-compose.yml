@@ -45,6 +45,7 @@ services:
       - "WEB_URL=http://${WEB_HOST}"
       - "APPLICATION_HOST=${API_APPLICATION_HOST}"
       - "SECRET_KEY_BASE=${SECRET_KEY_BASE}"
+      - "CONVERTER_URL=${CONVERTER_URL}"
       - "POSTGRES_USER=${POSTGRES_USER}"
       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
       - "POSTGRES_DB=${POSTGRES_DB}"
@@ -53,6 +54,7 @@ services:
       - image_db:/opt/app/lib/imaas-0.1.0/uploads
     depends_on:
       - db
+      - imagemagick
   db:
     image: mdillon/postgis:9.6
     container_name: db
@@ -63,5 +65,13 @@ services:
       - POSTGRES_HOST=${POSTGRES_HOST}
     volumes:
       - postgres_db:/var/lib/postgresql/data
+    networks:
+      - internal
+  imagemagick:
+    build:
+      context: ./imagemagick
+      args:
+        - "MIX_ENV=${MIX_ENV}"
+    restart: unless-stopped
     networks:
       - internal

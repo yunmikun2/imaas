@@ -50,6 +50,11 @@ config :logger,
 config :arc,
   storage_dir: Path.join(Application.app_dir(:imaas), "uploads")
 
+converter_url =
+  System.get_env("CONVERTER_URL") ||
+    raise "environment variable CONVERTER_URL is missing"
+
 config :imaas,
   application_host: "http://#{application_host}",
-  web_url: web_url
+  web_url: web_url,
+  converter_url: converter_url

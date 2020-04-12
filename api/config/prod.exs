@@ -1,4 +1,3 @@
 import Config
 
-config :imaas, ImaasWeb.Endpoint,
-  server: true
+config :imaas, ImaasWeb.Endpoint, server: true

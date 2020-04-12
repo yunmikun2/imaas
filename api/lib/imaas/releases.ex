@@ -16,9 +16,7 @@ defmodule Imaas.Releases do
           raise "The database for #{inspect(repo)} couldn't be created: #{term}"
 
         {:error, term} ->
-          raise "The database for #{inspect(repo)} couldn't be created: #{
-                  inspect(term)
-                }"
+          raise "The database for #{inspect(repo)} couldn't be created: #{inspect(term)}"
       end
     end
   end
